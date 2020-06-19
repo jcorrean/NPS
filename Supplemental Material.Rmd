@@ -6,6 +6,20 @@ author: |
 output: pdf_document
 ---
 
-This supplemental material aims to provide an open and reproducible report that shows the empirical results obtained for the paper titled: "Balancing the evidence of the Net Promoter Score: The results of a scientific mapping analysis versus an empirical work in the energy sector." A warning note is that this supplemental material is limited to the scientific mapping analysis, and does not provide any result regarding the empirical analysis of the data retrieved from the Energy sector (as this data was obtained under an anonimity agreement between the research team and the energy supplier company).
+This supplemental material aims to provide an open and reproducible report that shows the empirical results obtained for the paper titled: "Balancing the evidence of the Net Promoter Score: The results of a scientific mapping analysis versus an empirical work in the energy sector." A warning note is that this supplemental material is limited to the scientific mapping analysis, and does not provide any result regarding the empirical analysis of the data retrieved from the Energy sector (as this data was obtained under an anonymity agreement between the research team and the energy supplier company).
+
+Our first step consists of using the raw data set called "NPS.RData" and apply the following series of commands
+
+```{r}
+load("~/NPS.RData")
+NPS <- data.frame(M)
+library(dplyr)
+NPS <- arrange(NPS, desc(TC))
+selectedPapers <- filter(NPS, grepl('REICHHELD', CR))
+rm(list=setdiff(ls(), "selectedPapers"))
+selectedPapers$Against <- 1:nrow(selectedPapers)
+balancedPapers <- selectedPapers[, c(1, 6, 53, 37)]
+```
+
 
 
