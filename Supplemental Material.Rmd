@@ -23,7 +23,7 @@ balancedPapers <- selectedPapers[, c(1, 6, 53, 37)]
 Until this point, we now have two data sets (i.e., "balancedPapers" and "selectedPapers"). In "selectedPapers" there are 91 papers. The common attribute among them is that they all cite the paper of Reichheld (2003). In "balancedPapers" we have the same papers included in "selectedPapers", but it contains only four columns: 1) AU is the column for authors, 2) AB is the column for the abstract of each paper, 3) Against is the column that in which we are going to indicate if the paper provides specific arguments in favor or against the use of NPS (as illustrated below), and 4) TC is the column that contains the number of citations as captured by Web-of-Science database.
 
 # Classification of papers as supporters of NPS
-Then, we classified each paper's opinion on the use of NPS. Papers that used NPS without providing any explicit critic in the abstract were classified as 0, while papers that provide explicit criticism on NPS were classified as 1, like this:
+A straightforward way to understand the literature is by differentiating the sample of articles that support the use of NPS from those that do not. Thus, we classified each paper in one of the following two categories. Articles were classified as supporters of the use of NPS if they did not provide any explicit criticism in the abstract (coded as zero); otherwise, they were classified as non-supporters of using NPS (coded as one), like this:
 ```{r}
 balancedPapers$Against <- c(1,0,0,1,1,1,1,0,0,1,
                             1,0,0,0,0,0,0,0,0,0,
@@ -48,14 +48,32 @@ S <- summary(object = results, k = 10, pause = FALSE)
 
 plot(x = results, k = 10, pause = FALSE)
 
-NetMatrix <- biblioNetwork(selectedPapers, analysis = "co-occurrences", network = "keywords", sep = ";")
+NetMatrix <- biblioNetwork(selectedPapers, 
+                           analysis = "co-occurrences", 
+                           network = "keywords", 
+                           sep = ";")
 
-net=networkPlot(NetMatrix, normalize="association", weighted=T, n = 30, Title = "Keyword Co-occurrences", type = "fruchterman", size=T,edgesize = 5,labelsize=0.7)
+net=networkPlot(NetMatrix, 
+                normalize="association", 
+                weighted=T, n = 30, 
+                Title = "Keyword Co-occurrences", 
+                type = "fruchterman", 
+                size=T, 
+                edgesize = 5,
+                labelsize=0.7)
 
-CS <- conceptualStructure(selectedPapers,field="ID", method="CA", minDegree=4, clust=5, stemming=FALSE, labelsize=10, documents=10)
+CS <- conceptualStructure(selectedPapers,
+                          field="ID", 
+                          method="CA", 
+                          minDegree=4, 
+                          clust=5, 
+                          stemming=FALSE, 
+                          labelsize=10, 
+                          documents=10)
 ```
 
-The results above show a series of revealing facts regarding the publication of NPS. For example, the emergence of five dominant topics, and the keywords co-occurrence network. 
+The structure of keywords co-occurrence network is depicted. This network resulted from using the keywords that appeared in each paper analyzed. The size of each node is proportional to the frequency of appearance of each word in the list of keywords extracted from the bibliometric sample. Straight lines that connect pairs of nodes represent the frequency any couple of keywords occurred at the same time across the papers analyzed. Another interesting result is the organization of topics illustrated as a clustered topics dendrogram. In this plot, topics are arranged as individual branches whose similarity was calculated as the Euclidean distance between the vectors that represent the set of keywords appearing
+in each paper.
 
 ```{r}
 library(ggplot2)
@@ -70,5 +88,6 @@ theme(text = element_text(size=15),
 scale_fill_discrete(name = "Technical Orientation", labels = c("Promoting NPS use", "Criticizing NPS use"))  
 ```
 
-
+In this last Figure, it can be seen the statistical distribution of citations for both the papers that promote the use of NPS for practical
+purposes and those that criticize it. It can be seen that papers that provide critical arguments against the use of NPS for practical purposes tend to be more cited than those documents that promote the use of NPS without precautions.
 
