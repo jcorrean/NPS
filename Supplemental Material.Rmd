@@ -6,4 +6,6 @@ author: |
 output: pdf_document
 ---
 
-This supplemental material aims to provide an open and reproducible report that shows the empirical results obtained for the paper titled: "Balancing the evidence of the Net Promoter Score: The results of a scientific mapping analysis versus an empirical work in the energy sector."
+This supplemental material aims to provide an open and reproducible report that shows the empirical results obtained for the paper titled: "Balancing the evidence of the Net Promoter Score: The results of a scientific mapping analysis versus an empirical work in the energy sector." A warning note is that this supplemental material is limited to the scientific mapping analysis, and does not provide any result regarding the empirical analysis of the data retrieved from the Energy sector (as this data was obtained under an anonimity agreement between the research team and the energy supplier company).
+
+
