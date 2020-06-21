@@ -89,5 +89,5 @@ scale_fill_discrete(name = "Technical Orientation", labels = c("Promoting NPS us
 ```
 
 In this last Figure, it can be seen the statistical distribution of citations for both the papers that promote the use of NPS for practical
-purposes and those that criticize it. It can be seen that papers that provide critical arguments against the use of NPS for practical purposes tend to be more cited than those documents that promote the use of NPS without precautions.
+purposes and those that criticize it. It can be seen that papers that provide critical arguments against the use of NPS for practical purposes tend to be more cited than those documents that promote the use of NPS without precautions. 
 
